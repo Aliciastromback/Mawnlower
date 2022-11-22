@@ -6,8 +6,9 @@ class LawnmowersController < ApplicationController
 
   def create
     @lawnmower = Lawnmower.new(lawnmower_params)
+    @lawnmower.user = current_user
     if @lawnmower.save
-      redirect_to lawnmower_path(@lawnmower)
+      redirect_to lawnmower_path
     else
       render :new
     end

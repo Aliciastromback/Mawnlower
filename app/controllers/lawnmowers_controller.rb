@@ -1,5 +1,6 @@
 class LawnmowersController < ApplicationController
-  before_action :set_lawnmower, only: [:show]
+  before_action :set_lawnmower, only: [:show, :update, :destroy]
+
   def index
     @lawnmowers = Lawnmower.all
   end
@@ -14,7 +15,7 @@ class LawnmowersController < ApplicationController
     @lawnmower = Lawnmower.new(lawnmower_params)
     @lawnmower.user = current_user
     if @lawnmower.save
-      redirect_to lawnmower_path(@lawnmower)
+      redirect_to root_path
     else
       render :new
     end
@@ -23,13 +24,11 @@ class LawnmowersController < ApplicationController
   def edit; end
 
   def update
-    @lawnmower = Lawnmower.find(params[:id])
     @lawnmower.update(lawnmower_params)
     redirect_to lawmower_path(@lawnmower)
   end
 
   def destroy
-    @lawnmower = Lawnmower.find(params[:id])
     @lawnmower.destroy
     redirect_to lawnmowers_path, status: :see_other
   end
@@ -37,7 +36,7 @@ class LawnmowersController < ApplicationController
   private
 
   def set_lawnmower
-    @bookmark = Lawnmower.find(params[:id])
+    @lawnmower = Lawnmower.find(params[:id])
   end
 
   def lawnmower_params

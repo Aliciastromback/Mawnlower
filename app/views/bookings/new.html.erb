@@ -4,6 +4,7 @@
       <div class="bg-white rounded p-3 shadow">
         <h3>Add an offer</h3>
         <%= simple_form_for [@lawnmower, @booking] do |f| %>
+          <%= f.input :booking_date, as: :date, html5: true, class: 'btn btn-flat' %>
           <%= f.submit class: 'btn btn-flat' %>
         <% end %>
       </div>

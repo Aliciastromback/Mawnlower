@@ -1,11 +1,10 @@
 class LawnmowersController < ApplicationController
+  before_action :set_lawnmower, only: [:show]
   def index
     @lawnmowers = Lawnmower.all
   end
 
-  def show
-    @lawnmower = Lawnmower.find(params[:id])
-  end
+  def show; end
 
   def new
     @lawnmower = Lawnmower.new
@@ -15,12 +14,12 @@ class LawnmowersController < ApplicationController
     @lawnmower = Lawnmower.new(lawnmower_params)
     @lawnmower.user = current_user
     if @lawnmower.save
-      redirect_to lawnmower_path
+      redirect_to lawnmower_path(@lawnmower)
     else
       render :new
     end
   end
-  
+
   def edit; end
 
   def update
@@ -34,8 +33,12 @@ class LawnmowersController < ApplicationController
     @lawnmower.destroy
     redirect_to lawnmowers_path, status: :see_other
   end
-  
+
   private
+
+  def set_lawnmower
+    @bookmark = Lawnmower.find(params[:id])
+  end
 
   def lawnmower_params
     params.require(:lawnmower).permit(:title, :price, :description, :speed, :user_id)

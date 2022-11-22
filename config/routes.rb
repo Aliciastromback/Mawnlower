@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   root to: 'lawnmowers#index'
   resources :lawnmowers do
-    resources :bookings
+    resources :bookings, except: [:index]
   end
+  resources :bookings, only: [:index]
   devise_for :users
 
 

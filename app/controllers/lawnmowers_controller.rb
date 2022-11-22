@@ -1,0 +1,2 @@
+class LawnmowersController < ApplicationController
+end

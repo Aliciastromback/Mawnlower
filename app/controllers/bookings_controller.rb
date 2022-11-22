@@ -11,7 +11,7 @@ class BookingsController < ApplicationController
   def edit; end
 
   def new
-    @booking = booking.new
+    @booking = Booking.new
   end
 
   def create

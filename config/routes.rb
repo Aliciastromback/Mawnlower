@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: 'lawnmowers#index'
-  resources :lawnmowers
+  resources :lawnmowers do
+    resources :bookings
+  end
   devise_for :users
 
 

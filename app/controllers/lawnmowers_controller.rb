@@ -1,4 +1,11 @@
 class LawnmowersController < ApplicationController
+  def index
+    @lawnmowers = Lawnmower.all
+  end
+
+  def show
+    @lawnmower = Lawnmower.find(params[:id])
+  end
 
   def new
     @lawnmower = Lawnmower.new
@@ -14,8 +21,7 @@ class LawnmowersController < ApplicationController
     end
   end
   
-  def edit
-  end
+  def edit; end
 
   def update
     @lawnmower = Lawnmower.find(params[:id])
@@ -23,13 +29,11 @@ class LawnmowersController < ApplicationController
     redirect_to lawmower_path(@lawnmower)
   end
 
-
   def destroy
     @lawnmower = Lawnmower.find(params[:id])
     @lawnmower.destroy
     redirect_to lawnmowers_path, status: :see_other
   end
-  
   
   private
 

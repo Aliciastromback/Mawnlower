@@ -7,7 +7,7 @@
       <p><%= @lawnmower.speed %></p>
     </div>
     <h2 class="card-lawnmower-pricing"><%= @lawnmower.price %></h2>
-    <%= link_to "Book", new_booking_path, class: "btn btn-ghost" %>
+    <%= link_to "Book", new_lawnmower_booking_path(@lawnmower), class: "btn btn-ghost" %>
     <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-lawnmower-user avatar-bordered" />
   </div>
 </div>

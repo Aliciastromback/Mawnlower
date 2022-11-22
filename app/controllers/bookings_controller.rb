@@ -42,7 +42,7 @@ class BookingsController < ApplicationController
   end
 
   def set_lawnmower
-    @lawnmower = Lawnmower.find(params[:id])
+    @lawnmower = Lawnmower.find(params[:lawnmower_id])
   end
 
   def booking_params

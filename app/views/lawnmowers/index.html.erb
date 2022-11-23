@@ -1,6 +1,6 @@
 <h1>MawnLowers</h1>
 <div class="row my-2">
-  <% if @lawnmowers = [] %>
+  <% if @lawnmowers.empty? %>
     <p>There are no MawnLowers</p>
     <% else %>
     <% @lawnmowers.each do |lawnmower| %>

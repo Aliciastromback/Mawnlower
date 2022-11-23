@@ -8,6 +8,9 @@
         <div class="bg-white rounded shadow h-100">
           <div class="p-3 rounded-bottom d-flex flex-column">
             <strong><%= lawnmower.title.capitalize %> <span class="text-muted font-weight-normal">• <%= lawnmower.price %> <i class="fas fa-dollar"></i></span></strong>
+               <% lawnmower.photos.each do |photo| %>
+                <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+              <% end %>
             <small class="text-muted"><%= lawnmower.description %></small>
             <div class="d-flex align-items-end justify-content-between pt-4">
               <div>

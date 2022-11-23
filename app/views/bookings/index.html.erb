@@ -9,6 +9,7 @@
                 <p>Booking confirmed on: <%= booking.booking_date%></p>
                 <p>Address: <%= booking.user.address %></p>
                 <p>By: <%= booking.user.email %></p>
+                <small><%= link_to 'Delete Booking', lawnmower_booking_path(booking.lawnmower, booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'text-danger' %></small>
               </div>
             </div>
           </div>

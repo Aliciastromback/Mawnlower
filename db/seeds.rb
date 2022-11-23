@@ -13,13 +13,11 @@ require 'open-uri'
 file1 = URI.open('app/assets/images/logo.png')
 file2 = URI.open('app/assets/images/sebi.png')
 file3 = URI.open('app/assets/images/doggo.jpg')
-file3 = URI.open('app/assets/images/stormbreaker.png')
+file4 = URI.open('app/assets/images/stormbreaker.png')
 
 # lawnmower photos
 
 file = URI.open('app/assets/images/BobCuttingGrass.jpeg')
-
-
 
 user1 = User.new do |u|
   u.email = "sebastian.hahne@jamable.com"
@@ -44,7 +42,7 @@ user3 = User.new do |u|
   u.password = "123456"
   u.password_confirmation = "123456"
   u.address = "Sonntagstraße 1, Berlin, Berlin, Deutschland"
-  u.photo.attach(io: file3, filename: 'stormbreaker.png', content_type: 'image/png')
+  u.photo.attach(io: file4, filename: 'stormbreaker.png', content_type: 'image/png')
 end
 user3.save
 

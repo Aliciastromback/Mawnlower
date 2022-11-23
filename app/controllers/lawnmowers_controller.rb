@@ -40,6 +40,6 @@ class LawnmowersController < ApplicationController
   end
 
   def lawnmower_params
-    params.require(:lawnmower).permit(:title, :price, :description, :speed, :user_id, photos: [])
+    params.require(:lawnmower).permit(:title, :price, :description, :speed, :user_id, :photo)
   end
 end

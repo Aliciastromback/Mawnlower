@@ -4,7 +4,7 @@
       <h1 class="text-white">MawnLowers</h1>
       <div class=" d-flex justify-content-center">
         <div class="searchbar w-50">
-          <%= form_with url: lawnmowers_path, method: :get, class:"d-flex justify-content-center" do %>
+          <%= form_with url: root_path , method: :get, class:"d-flex justify-content-center" do %>
             <%= text_field_tag :query,
             params[:query],
             class: "form-control search-input",
@@ -19,16 +19,37 @@
 <div class="d-flex justify-content-center">
 </div>
 <div class="row my-2">
-  <% @lawnmowers.each do |lawnmower| %>
-    <div class="col-12 col-sm-6 mb-4" data-aos="zoom-in">
-      <div class="bg-white rounded shadow h-100">
-        <div class="p-3 rounded-bottom d-flex flex-column">
-          <strong><%= lawnmower.title %> <span class="text-muted font-weight-normal">• <%= lawnmower.price %> <i class="fas fa-star star-yellow"></i></span></strong>
-          <small class="text-muted"><%= lawnmower.description %></small>
-        <div class="d-flex align-items-end justify-content-between pt-4">
-      <div>
-    <i class="fas fa-quote-left mr-2"></i><small class="flex-grow-1">
-    <%= lawnmower.speed %></small>
-    <%end%>
+<div class="row my-2">
+  <% if @lawnmowers.empty? %>
+    <p>There are no MawnLowers</p>
+    <% else %>
+    <% @lawnmowers.each do |lawnmower| %>
+    <% if lawnmower.user != current_user %>
+        <div class="col-12 col-sm-4 mb-4" data-aos="zoom-in">
+          <div class="bg-white rounded shadow h-100">
+            <div class="p-3 rounded-bottom d-flex flex-column">
+              <%= link_to lawnmower_path(lawnmower), data: { turbo_method: :get } do %>
+              <strong><%= lawnmower.title.capitalize %> <span class="text-muted font-weight-normal">• <%= lawnmower.price %> <i class="fas fa-dollar"></i></span></strong>
+                  <%= cl_image_tag lawnmower.photo.key, height: 250, width: 450, crop: :fill %>
+              <% end %>
+              <small class="text-muted"><%= lawnmower.description %></small>
+              <div class="d-flex align-items-end justify-content-between pt-4">
+                <div>
+                  <span>Speed:  </span><small class="flex-grow-1"><%= lawnmower.speed %></small>
+                  <span>By: <%= lawnmower.user.name%></span>
+                </div>
+                <small class="text-right flex-shrink-0">
+                <% if user_signed_in? %>
+                    <%= link_to 'View Offer', lawnmower_path(lawnmower), data: { turbo_method: :get } %></small>
+                      <% if lawnmower.user == current_user %>
+                        <%= link_to 'Delete lawnmower', lawnmower_path(lawnmower), data: { turbo_method: :delete, confirm: "Are you sure you want to remove #{lawnmower.title}"}, class: 'text-danger' %></small>
+                      <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
   </div>
-</div>

@@ -17,9 +17,9 @@
                 <p>Address: <%= booking.user.address %></p>
                 <p>By: <%= booking.user.name %></p>
                   <% if booking.pending? %>
-                    <p><% booking.lawnmower.user.name %> will respond shortly</p>
+                    <p><%= booking.lawnmower.user.name %> has received your request.</p>
                     <p>Status: Booking pending</p>
-                  <% else %>
+                  <% elsif booking.confirmed %>
                     <p>Status: Booking confirmed</p>
                   <% end %>
                 <small><%= link_to 'View Booking', lawnmower_booking_path(booking.lawnmower, booking)%></small>

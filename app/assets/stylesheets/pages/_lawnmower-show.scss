@@ -1,39 +1,33 @@
-.card-lawnmower {
+.card-product {
+  margin: 50px;
   overflow: hidden;
+  height: 500px;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
 }
 
-.card-lawnmower > img {
-  height: 200px;
-  width: 100%;
+.card-product img {
+  height: 100%;
+  width: auto;
   object-fit: cover;
 }
 
-.card-lawnmower h2 {
+.card-product h2 {
   font-size: 16px;
   font-weight: bold;
   margin: 0;
 }
 
-.card-lawnmower p {
+.card-product p {
   font-size: 12px;
+  line-height: 1.4;
   opacity: .7;
-  margin: 0;
+  margin-bottom: 0;
+  margin-top: 8px;
 }
 
-
-.card-lawnmower .card-lawnmower-infos {
+.card-product .card-product-infos {
   padding: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  position: relative;
-}
-
-.card-lawnmower-infos .card-lawnmower-user {
-  position: absolute;
-  right: 16px;
-  top: -20px;
-  width: 40px;
 }

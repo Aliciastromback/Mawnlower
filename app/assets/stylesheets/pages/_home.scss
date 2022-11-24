@@ -1,1 +1,31 @@
 // Specific CSS for your home-page
+.heroimage {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  h1 {
+    font-size: 96px !important;
+
+  }
+}
+
+.herogradient {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) -38.12%, rgba(0, 0, 0, 0.5) 88.8%);
+  backdrop-filter: blur(2.5px);
+}
+
+.searchbar {
+  font-size: 15px;
+  background-color: white;
+  border-radius: 50px;
+}
+
+.search-input {
+  border-radius: 50px 0px 0px 50px;
+}
+
+.search-btn {
+  border-radius: 0px 50px 50px 0px;
+  background-color: #F4F4F4;
+}

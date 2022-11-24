@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'lawnmowers#index'
+  root to: 'pages#home'
   resources :lawnmowers do
     resources :bookings, except: [:index]
     resources :reviews

@@ -18,9 +18,11 @@
                 <p>By: <%= booking.user.name %></p>
                   <% if booking.pending? %>
                     <p><%= booking.lawnmower.user.name %> has received your request.</p>
-                    <p>Status: Booking pending</p>
-                  <% elsif booking.confirmed %>
-                    <p>Status: Booking confirmed</p>
+                    <p>Status: Order pending</p>
+                  <% elsif booking.confirmed? %>
+                    <p>Status: Order confirmed</p>
+                  <% else %>
+                    <p>Status: Order cancelled</p>
                   <% end %>
                 <small><%= link_to 'View Booking', lawnmower_booking_path(booking.lawnmower, booking)%></small>
                 <small><%= link_to 'Delete Booking', lawnmower_booking_path(booking.lawnmower, booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'text-danger' %></small>

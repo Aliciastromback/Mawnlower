@@ -11,25 +11,7 @@
       </div>
       <div class="pricing-info">
         <h3>Price: <%= @booking.lawnmower.price %>€</h3>
-        <%= link_to "Book", new_lawnmower_booking_path(@booking.lawnmower), class: "btn btn-outline-info" %>
-      </div>
-      <div class="card-reviews">
-        <div>
-          <% if @booking.lawnmower.reviews.empty? %>
-            <p>Be the first to add a review!</p>
-          <% else %>
-            <h3>Reviews</h3>
-            <% @booking.lawnmower.reviews.each do |review| %>
-            <div class="review-info">
-              <p><%= review.rating %><i class="fas fa-star star-yellow"></i></p>
-              <p><%= review.comment %></p>
-              <p>Review by: <%= review.user.name %></p>
-              <% if review.user == current_user %>
-                  <input type="button" id="myBtn" value="Cancel">
-              <% end %>
-            </div>
-            <% end %>
-          <% end %>
+        <%= link_to 'Cancel', bookings_cancelled_path, class: "btn btn-outline-info" %>
         </div>
       </div>
     </div>

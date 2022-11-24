@@ -1,6 +1,8 @@
 <div class="container">
   <div class="card-product">
-    <img <%= cl_image_tag @lawnmower.photo.key %>
+    <div class="img">
+    <%= cl_image_tag @lawnmower.photo.key %>
+    </div>
     <div class="card-product-infos">
       <h2><%= @lawnmower.title %></h2>
       <p><%= @lawnmower.description %></p>
@@ -10,27 +12,30 @@
       <h2 class="card-lawnmower-pricing"><%= @lawnmower.price %></h2>
       <%= link_to "Book", new_lawnmower_booking_path(@lawnmower), class: "btn btn-ghost" %>
     </div>
+  </div>
+<div class="container">
   <div>
-   <%= simple_form_for([@lawnmower, @review]) do |f| %>
-          <%= f.input :comment, placeholder: 'Add your review here!' %>
-          <%= f.input :rating, placeholder: 'Rate me!' %>
-          <%= f.submit class: 'btn btn-flat' %>
-        <% end %>
+  <%= simple_form_for([@lawnmower, @review]) do |f| %>
+    <%= f.input :comment, placeholder: 'Add your review here!' %>
+    <%= f.input :rating, placeholder: 'Rate me!' %>
+        <%= f.submit class: 'btn btn-flat' %>
+  <% end %>
   </div>
     <div class="card-lawnmower-infos">
-    <div>
-    <% if @lawnmower.reviews.empty? %>
-      <p>Be the first to add a review!</p>
-      <% else %>
-      <% @lawnmower.reviews.each do |review| %>
-      <p><%= review.comment %></p>
-      <p><%= review.rating %></p>
-      <p>Review by: <%= review.user.name %></p>
+      <div>
+        <% if @lawnmower.reviews.empty? %>
+          <p>Be the first to add a review!</p>
+        <% else %>
+          <% @lawnmower.reviews.each do |review| %>
+            <p><%= review.comment %></p>
+            <p><%= review.rating %></p>
+            <p>Review by: <%= review.user.name %></p>
+            <% if review.user = current_user %>
+              <small><%= link_to 'Delete Review', lawnmower_review_path(review.lawnmower, review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'text-danger' %></small>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
-    <% if review.user = current_user %>
-        <small><%= link_to 'Delete Review', lawnmower_review_path(review.lawnmower, review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'text-danger' %></small>
-      <% end %>
-    <% end %>
-    <% end %>
   </div>
 </div>

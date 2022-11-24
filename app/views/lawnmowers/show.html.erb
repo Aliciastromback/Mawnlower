@@ -35,12 +35,25 @@
     </div>
   </div>
 <div>
-<div class="review-form">
-  <h2>Add your own review!</h2>
-  <%= simple_form_for([@lawnmower, @review]) do |f| %>
-    <%= f.input :comment, placeholder: 'Add your review here!' %>
-    <%= f.input :rating, placeholder: 'Rate me!' %>
-    <%= f.input :photo, as: :file %>
-    <%= f.submit class: "btn btn-outline-info" %>
-  <% end %>
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Create a Review
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="review-form">
+        <h2>Add your own review!</h2>
+        <%= simple_form_for([@lawnmower, @review]) do |f| %>
+          <%= f.input :comment, placeholder: 'Add your review here!' %>
+          <%= f.input :rating, placeholder: 'Rate me!' %>
+          <%= f.input :photo, as: :file %>
+          <%= f.submit class: "btn btn-outline-info" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
 </div>

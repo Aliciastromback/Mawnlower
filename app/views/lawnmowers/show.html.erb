@@ -1,6 +1,6 @@
 <div class="container">
   <div class="card-product">
-    <img <%= cl_image_tag @lawnmower.photo.key %>
+    <%= cl_image_tag @lawnmower.photo.key %>
     <div class="card-product-infos">
       <h2><%= @lawnmower.title %></h2>
       <p><%= @lawnmower.description %></p>
@@ -14,6 +14,7 @@
    <%= simple_form_for([@lawnmower, @review]) do |f| %>
           <%= f.input :comment, placeholder: 'Add your review here!' %>
           <%= f.input :rating, placeholder: 'Rate me!' %>
+          <%= f.input :photo, as: :file %>
           <%= f.submit class: 'btn btn-flat' %>
         <% end %>
   </div>
@@ -26,6 +27,7 @@
       <p><%= review.comment %></p>
       <p><%= review.rating %></p>
       <p>Review by: <%= review.user.name %></p>
+      <%# <%= cl_image_tag review.photo.key %>
     </div>
     <% if review.user = current_user %>
         <small><%= link_to 'Delete Review', lawnmower_review_path(review.lawnmower, review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'text-danger' %></small>

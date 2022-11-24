@@ -1,21 +1,34 @@
-<div>
-<h1>MawnLowers</h1>
-<div class="row my-2">
-    <% @lawnmowers.each do |lawnmower| %>
-      <div class="col-12 col-sm-6 mb-4" data-aos="zoom-in">
-        <div class="bg-white rounded shadow h-100">
-          <div class="p-3 rounded-bottom d-flex flex-column">
-            <strong><%= lawnmower.name %> <span class="text-muted font-weight-normal">• <%= lawnmower.price %> <i class="fas fa-star star-yellow"></i></span></strong>
-            <small class="text-muted"><%= lawnmower.description %></small>
-            <div class="d-flex align-items-end justify-content-between pt-4">
-              <div>
-                <i class="fas fa-quote-left mr-2"></i><small class="flex-grow-1"><%= lawnmower.speed %></small>
-              </div>
-              <small class="text-right flex-shrink-0">
-              <%= link_to 'Delete lawnmower', lawnmower_path(lawnmower), data: { turbo_method: :delete, confirm: "Are you sure you want to remove #{lawnmower.title}"}, class: 'text-danger' %></small>
-            </div>
-          </div>
+<div class="heroimage" style="background-image: url('https://images.unsplash.com/photo-1533460004989-cef01064af7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Z3Jhc3N8ZW58MHx8MHx8&w=1000&q=80'); height: 70vh;">
+  <div class="herogradient w-100 h-100 d-flex justify-content-center align-items-center">
+    <div>
+      <h1 class="text-white">MawnLowers</h1>
+      <div class=" d-flex justify-content-center">
+        <div class="searchbar w-50">
+          <%= form_with url: lawnmowers_path, method: :get, class:"d-flex justify-content-center" do %>
+            <%= text_field_tag :query,
+            params[:query],
+            class: "form-control search-input",
+            placeholder: "Find your MawnLower"%>
+            <%= submit_tag "🔍", class:"btn search-btn"%>
+          <% end %>
         </div>
       </div>
-    <% end %>
+    </div>
   </div>
+</div>
+<div class="d-flex justify-content-center">
+</div>
+<div class="row my-2">
+  <% @lawnmowers.each do |lawnmower| %>
+    <div class="col-12 col-sm-6 mb-4" data-aos="zoom-in">
+      <div class="bg-white rounded shadow h-100">
+        <div class="p-3 rounded-bottom d-flex flex-column">
+          <strong><%= lawnmower.title %> <span class="text-muted font-weight-normal">• <%= lawnmower.price %> <i class="fas fa-star star-yellow"></i></span></strong>
+          <small class="text-muted"><%= lawnmower.description %></small>
+        <div class="d-flex align-items-end justify-content-between pt-4">
+      <div>
+    <i class="fas fa-quote-left mr-2"></i><small class="flex-grow-1">
+    <%= lawnmower.speed %></small>
+    <%end%>
+  </div>
+</div>

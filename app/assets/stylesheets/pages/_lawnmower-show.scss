@@ -5,6 +5,7 @@
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -31,4 +32,13 @@
 
 .card-product .card-product-infos {
   padding: 16px;
+}
+
+.pricing-info {
+  padding: 16px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
 }

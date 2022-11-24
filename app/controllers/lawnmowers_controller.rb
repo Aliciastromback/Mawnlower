@@ -5,7 +5,9 @@ class LawnmowersController < ApplicationController
     @lawnmowers = Lawnmower.all
   end
 
-  def show; end
+  def show
+    @review = Review.new
+  end
 
   def new
     @lawnmower = Lawnmower.new

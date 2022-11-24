@@ -18,6 +18,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.user = current_user
     @booking.lawnmower = @lawnmower
+    @booking.pending!
     if @booking.save
       redirect_to bookings_path
     else
@@ -46,6 +47,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:user_id, :lawnmower_id, :booking_date)
+    params.require(:booking).permit(:user_id, :lawnmower_id, :booking_date, :status)
   end
 end

@@ -1,16 +1,37 @@
-<div class="card-lawnmower">
-  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
-  <div class="card-lawnmower-infos">
-    <div>
-      <h2><%= @lawnmower.title %></h2>
-      <p><%= @lawnmower.description %></p>
-      <p><%= @lawnmower.speed %></p>
-      <% @lawnmower.photos.each do |photo| %>
-        <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-      <% end %>
+<div class="">
+  <div class="card-product">
+    <div class="img">
+    <%= cl_image_tag @booking.lawnmower.photo.key %>
     </div>
-    <h2 class="card-lawnmower-pricing"><%= @lawnmower.price %></h2>
-    <small><%= link_to 'Delete Booking', lawnmower_booking_path(@booking), data: { turbo_method: :delete }, class: 'text-danger' %></small>
-    <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-lawnmower-user avatar-bordered" />
+    <div class="product-info">
+      <div class="card-product-infos">
+        <h2><%= @booking.lawnmower.title %></h2>
+        <p>Decription: <%= @booking.lawnmower.description %></p>
+        <p>Speed: <%= @booking.lawnmower.speed %></p>
+      </div>
+      <div class="pricing-info">
+        <h3>Price: <%= @booking.lawnmower.price %>€</h3>
+        <%= link_to "Book", new_lawnmower_booking_path(@booking.lawnmower), class: "btn btn-outline-info" %>
+      </div>
+      <div class="card-reviews">
+        <div>
+          <% if @booking.lawnmower.reviews.empty? %>
+            <p>Be the first to add a review!</p>
+          <% else %>
+            <h3>Reviews</h3>
+            <% @booking.lawnmower.reviews.each do |review| %>
+            <div class="review-info">
+              <p><%= review.rating %><i class="fas fa-star star-yellow"></i></p>
+              <p><%= review.comment %></p>
+              <p>Review by: <%= review.user.name %></p>
+              <% if review.user == current_user %>
+                  <input type="button" id="myBtn" value="Cancel">
+              <% end %>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+<div>

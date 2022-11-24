@@ -16,6 +16,13 @@
                 <p>Booking confirmed on: <%= booking.booking_date%></p>
                 <p>Address: <%= booking.user.address %></p>
                 <p>By: <%= booking.user.name %></p>
+                  <% if booking.pending? %>
+                    <p><% booking.lawnmower.user.name %> will respond shortly</p>
+                    <p>Status: Booking pending</p>
+                  <% else %>
+                    <p>Status: Booking confirmed</p>
+                  <% end %>
+                <small><%= link_to 'View Booking', lawnmower_booking_path(booking.lawnmower, booking)%></small>
                 <small><%= link_to 'Delete Booking', lawnmower_booking_path(booking.lawnmower, booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'text-danger' %></small>
               </div>
             </div>

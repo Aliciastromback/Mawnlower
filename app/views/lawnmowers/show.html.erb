@@ -26,21 +26,21 @@
           <%= f.submit class: 'btn btn-flat' %>
     <% end %>
   </div>
-  <div class="card-lawnmower-infos">
-    <div>
-      <% if @lawnmower.reviews.empty? %>
-        <p>Be the first to add a review!</p>
-      <% else %>
-        <% @lawnmower.reviews.each do |review| %>
-          <p><%= review.comment %></p>
-          <p><%= review.rating %></p>
-          <p>Review by: <%= review.user.name %></p>
-            <% if review.photo.present? %>
-            <%= cl_image_tag review.photo.key %>
+    <div class="card-lawnmower-infos">
+      <div>
+        <% if @lawnmower.reviews.empty? %>
+          <p>Be the first to add a review!</p>
+        <% else %>
+          <% @lawnmower.reviews.each do |review| %>
+            <p><%= review.comment %></p>
+            <p><%= review.rating %></p>
+            <p>Review by: <%= review.user.name %></p>
+              <% if review.photo.present? %>
+                <%= cl_image_tag review.photo.key %>
+              <% end %>
+            <% if review.user == current_user %>
+              <small><%= link_to 'Delete Review', lawnmower_review_path(review.lawnmower, review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'text-danger' %></small>
             <% end %>
-          <% if review.user = current_user %>
-            <small><%= link_to 'Delete Review', lawnmower_review_path(review.lawnmower, review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'text-danger' %></small>
-          <% end %>
         <% end %>
       <% end %>
     </div>

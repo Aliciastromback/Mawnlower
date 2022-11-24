@@ -20,6 +20,7 @@ file4 = URI.open('app/assets/images/stormbreaker.png')
 file = URI.open('app/assets/images/BobCuttingGrass.jpeg')
 
 user1 = User.new do |u|
+  u.name = "NotAFly"
   u.email = "sebastian.hahne@jamable.com"
   u.password = "123456"
   u.password_confirmation = "123456"
@@ -29,6 +30,7 @@ end
 user1.save
 
 user2 = User.new do |u|
+  u.name = "Sebi"
   u.email = "sarjsmithde@gmail.com"
   u.password = "123456"
   u.password_confirmation = "123456"
@@ -38,7 +40,8 @@ end
 user2.save
 
 user3 = User.new do |u|
-  u.email = "strombreaker@hotmail.com"
+  u.name = "Stormbreaker"
+  u.email = "stormbreaker@hotmail.com"
   u.password = "123456"
   u.password_confirmation = "123456"
   u.address = "Sonntagstraße 1, Berlin, Berlin, Deutschland"
@@ -66,3 +69,5 @@ lawnmower2 = Lawnmower.new do |u|
 end
 lawnmower2.user = user1
 lawnmower2.save
+
+puts "done"

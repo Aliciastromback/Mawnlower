@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_23_101602) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_24_121444) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +63,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_23_101602) do
     t.index ["user_id"], name: "index_lawnmowers_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.text "comment"
+    t.integer "rating"
+    t.bigint "lawnmower_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lawnmower_id"], name: "index_reviews_on_lawnmower_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -72,6 +83,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_23_101602) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "address"
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -81,4 +93,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_23_101602) do
   add_foreign_key "bookings", "lawnmowers"
   add_foreign_key "bookings", "users"
   add_foreign_key "lawnmowers", "users"
+  add_foreign_key "reviews", "lawnmowers"
+  add_foreign_key "reviews", "users"
 end

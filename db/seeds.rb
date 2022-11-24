@@ -166,7 +166,7 @@ review2 = Review.new do |u|
   u.comment = 'You are fantastic Bob. You lightened up my day and brightened up my garden. May god be with you!<3'
   u.rating = 5
 end
-review2.lawnmower = lawnmower3
+review2.lawnmower = lawnmower1
 review2.user = user3
 review2.save
 

@@ -2,7 +2,11 @@ class LawnmowersController < ApplicationController
   before_action :set_lawnmower, only: [:show, :update, :destroy]
 
   def index
-    @lawnmowers = Lawnmower.all
+    if params[:query].present?
+      @lawnmowers = Lawnmower.where("title ILIKE ?", "%#{params[:query]}%")
+    else
+      @lawnmowers = Lawnmower.all
+    end
   end
 
   def show

@@ -85,7 +85,7 @@ lawnmower2 = Lawnmower.new do |u|
   u.title = 'Bailey'
   u.price = 1000
   u.description = 'Borks all the grass away'
-  u.speed = 5
+  u.speed = 2
   u.photo.attach(io: doggo, filename: 'doggo.jpg', content_type: 'image/jpg')
 end
 lawnmower2.user = user3

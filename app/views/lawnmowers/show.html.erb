@@ -1,14 +1,14 @@
-<div class="card-lawnmower">
-  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
-  <div class="card-lawnmower-infos">
-    <div>
+<div class="container">
+  <div class="card-product">
+    <img <%= cl_image_tag @lawnmower.photo.key %>
+    <div class="card-product-infos">
       <h2><%= @lawnmower.title %></h2>
       <p><%= @lawnmower.description %></p>
       <p><%= @lawnmower.speed %></p>
-        <%= cl_image_tag @lawnmower.photo.key, height: 300, width: 400, crop: :fill %>
     </div>
-    <h2 class="card-lawnmower-pricing"><%= @lawnmower.price %></h2>
-    <%= link_to "Book", new_lawnmower_booking_path(@lawnmower), class: "btn btn-ghost" %>
-    <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-lawnmower-user avatar-bordered" />
+    <div>
+      <h2 class="card-lawnmower-pricing"><%= @lawnmower.price %></h2>
+      <%= link_to "Book", new_lawnmower_booking_path(@lawnmower), class: "btn btn-ghost" %>
+    </div>
   </div>
 </div>

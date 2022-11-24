@@ -7,17 +7,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 40px;
+  padding: 56px
 }
 
 .card-product img {
   height: 400px;
   width: 400px;
-  margin-left: 50px;
   object-fit: cover;
 }
 
 .card-product h2 {
-  font-size: 16px;
+  font-size: 40px;
   font-weight: bold;
   margin: 0;
 }
@@ -30,7 +31,7 @@
   margin-top: 8px;
 }
 
-.card-product .card-product-infos {
+.card-product-infos {
   padding: 16px;
 }
 
@@ -39,6 +40,33 @@
   height: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  position: relative;
+  align-items: center;
+}
+
+.product-info {
+  flex-grow: 1;
+}
+
+.review-info {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-reviews {
+  padding: 16px;
+}
+
+.review-form {
+  margin: 50px;
+  overflow: hidden;
+  height: 500px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  padding: 56px
 }

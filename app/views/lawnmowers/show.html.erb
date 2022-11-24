@@ -1,4 +1,4 @@
-<div class="container">
+<div class="">
   <div class="card-product">
     <div class="img">
     <%= cl_image_tag @lawnmower.photo.key %>
@@ -6,43 +6,41 @@
     <div class="product-info">
       <div class="card-product-infos">
         <h2><%= @lawnmower.title %></h2>
-        <p><%= @lawnmower.description %></p>
-        <p><%= @lawnmower.speed %></p>
+        <p>Decription: <%= @lawnmower.description %></p>
+        <p>Speed: <%= @lawnmower.speed %></p>
       </div>
       <div class="pricing-info">
-        <h2><%= @lawnmower.price %></h2>
-        <%= link_to "Book", new_lawnmower_booking_path(@lawnmower), class: "btn btn-ghost" %>
+        <h3>Price: <%= @lawnmower.price %>€</h3>
+        <%= link_to "Book", new_lawnmower_booking_path(@lawnmower), class: "btn btn-outline-info" %>
+      </div>
+      <div class="card-reviews">
+        <div>
+          <% if @lawnmower.reviews.empty? %>
+            <p>Be the first to add a review!</p>
+          <% else %>
+            <h3>Reviews</h3>
+            <% @lawnmower.reviews.each do |review| %>
+            <div class="review-info">
+              <p><%= review.rating %><i class="fas fa-star star-yellow"></i></p>
+              <p><%= review.comment %></p>
+              <p>Review by: <%= review.user.name %></p>
+              <% if review.user == current_user %>
+                <small><%= link_to 'Delete Review', lawnmower_review_path(review.lawnmower, review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'text-danger' %></small>
+              <% end %>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
 <div>
-  <div>
-    <%= simple_form_for([@lawnmower, @review]) do |f| %>
-      <%= f.input :comment, placeholder: 'Add your review here!' %>
-      <%= f.input :rating, placeholder: 'Rate me!' %>
-      <%= f.input :photo, as: :file %>
-          <%= f.submit class: 'btn btn-flat' %>
-    <% end %>
-  </div>
-    <div class="card-lawnmower-infos">
-      <div>
-        <% if @lawnmower.reviews.empty? %>
-          <p>Be the first to add a review!</p>
-        <% else %>
-          <% @lawnmower.reviews.each do |review| %>
-            <p><%= review.comment %></p>
-            <p><%= review.rating %></p>
-            <p>Review by: <%= review.user.name %></p>
-              <% if review.photo.present? %>
-                <%= cl_image_tag review.photo.key %>
-              <% end %>
-            <% if review.user == current_user %>
-              <small><%= link_to 'Delete Review', lawnmower_review_path(review.lawnmower, review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'text-danger' %></small>
-            <% end %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
+<div class="review-form">
+  <h2>Add your own review!</h2>
+  <%= simple_form_for([@lawnmower, @review]) do |f| %>
+    <%= f.input :comment, placeholder: 'Add your review here!' %>
+    <%= f.input :rating, placeholder: 'Rate me!' %>
+    <%= f.input :photo, as: :file %>
+    <%= f.submit class: "btn btn-outline-info" %>
+  <% end %>
 </div>

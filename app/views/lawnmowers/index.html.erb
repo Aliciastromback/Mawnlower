@@ -12,11 +12,11 @@
     <p>There are no MawnLowers</p>
     <% else %>
     <% @lawnmowers.each do |lawnmower| %>
-      <div class="col-12 col-sm-6 mb-4" data-aos="zoom-in">
+      <div class="col-12 col-sm-4 mb-4" data-aos="zoom-in">
         <div class="bg-white rounded shadow h-100">
           <div class="p-3 rounded-bottom d-flex flex-column">
             <strong><%= lawnmower.title.capitalize %> <span class="text-muted font-weight-normal">• <%= lawnmower.price %> <i class="fas fa-dollar"></i></span></strong>
-                <%= cl_image_tag lawnmower.photo.key, height: 300, width: 400, crop: :fill %>
+                <%= cl_image_tag lawnmower.photo.key, height: 250, width: 450, crop: :fill %>
             <small class="text-muted"><%= lawnmower.description %></small>
             <div class="d-flex align-items-end justify-content-between pt-4">
               <div>

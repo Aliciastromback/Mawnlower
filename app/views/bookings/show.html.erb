@@ -1,19 +1,28 @@
 <div class="">
   <div class="card-product">
     <div class="img">
-    <%= cl_image_tag @booking.lawnmower.photo.key %>
+      <%= cl_image_tag @booking.lawnmower.photo.key %>
     </div>
-    <div class="product-info">
-      <div class="card-product-infos">
-        <h2><%= @booking.lawnmower.title %></h2>
-        <p>Decription: <%= @booking.lawnmower.description %></p>
-        <p>Speed: <%= @booking.lawnmower.speed %></p>
-      </div>
-      <div class="pricing-info">
-        <h3>Price: <%= @booking.lawnmower.price %>€</h3>
-        <%= link_to 'Cancel', bookings_cancelled_path, class: "btn btn-outline-info" %>
+      <div class="product-info">
+        <div class="card-product-infos">
+          <h2><%= @booking.lawnmower.title %></h2>
+          <p>Decription: <%= @booking.lawnmower.description %></p>
+          <p>Speed: <%= @booking.lawnmower.speed %></p>
         </div>
+        <div>
+        <h3>Booking Details</h3>
+          <p>Price: <%= @booking.lawnmower.price %>€</p>
+          <p>Booking made on: <%= @booking.booking_date%></p>
+          <p>By: <%= @booking.user.name %></p>
+          <p>Address: <%= @booking.user.address %></p>
+            <% if @booking.pending? %>
+                <p><%= @booking.lawnmower.user.name %> has received your request.</p>
+                <p>Status: Order pending</p>
+              <% elsif @booking.confirmed? %>
+                <p>Status: Order confirmed</p>
+              <% else %>
+                <p>Status: Order cancelled</p>
+            <% end %></div>
       </div>
-    </div>
   </div>
 <div>

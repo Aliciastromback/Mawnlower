@@ -24,6 +24,7 @@ Review.destroy_all
 sebi = URI.open('app/assets/images/sebi.png')
 stormbreaker = URI.open('app/assets/images/stormbreaker.png')
 gabriel = URI.open('app/assets/images/gabriel.png')
+catalina = URI.open('app/assets/images/catalina.png')
 # lawnmower photos
 
 bob = URI.open('app/assets/images/BobCuttingGrass.jpeg')
@@ -70,6 +71,16 @@ user3 = User.new do |u|
 end
 user3.save
 
+user4 = User.new do |u|
+  u.name = "Catalina"
+  u.email = "midwife@gmail.com"
+  u.password = "123456"
+  u.password_confirmation = "123456"
+  u.address = "Berlin, Berlin"
+  u.photo.attach(io: catalina, filename: 'catalina.png', content_type: 'image/png')
+end
+user4.save
+
 # user1's Lawnmowers
 lawnmower1 = Lawnmower.new do |u|
   u.title = 'Bob SnipSnip'
@@ -103,7 +114,7 @@ lawnmower3.save
 
 lawnmower4 = Lawnmower.new do |u|
   u.title = 'Snappy'
-  u.price = 50
+  u.price = 49
   u.description = 'I like turtles'
   u.speed = 1
   u.photo.attach(io: turtle, filename: 'turtle.jpeg', content_type: 'image/jpeg')
@@ -113,7 +124,7 @@ lawnmower4.save
 
 lawnmower5 = Lawnmower.new do |u|
   u.title = 'Michael Myers'
-  u.price = 80
+  u.price = 25
   u.description = 'After a midlife crisis michael decided he no longer wanted to kill people. He instead decided to follow his true passion...Gardening'
   u.speed = 5
   u.photo.attach(io: michael, filename: 'michael.jpeg', content_type: 'image/jpeg')
@@ -123,7 +134,7 @@ lawnmower5.save
 
 lawnmower6 = Lawnmower.new do |u|
   u.title = 'Bunch of Bunnies'
-  u.price = 9999
+  u.price = 666
   u.description = 'Fluffy, vicious animal. Make sure you have some carrots.'
   u.speed = 3
   u.photo.attach(io: bunnies, filename: 'bunnies.jpeg', content_type: 'image/jpeg')
@@ -133,7 +144,7 @@ lawnmower6.save
 
 lawnmower7 = Lawnmower.new do |u|
   u.title = 'Goaty McGoatFace'
-  u.price = 4
+  u.price = 12
   u.description = 'Why not'
   u.speed = 2
   u.photo.attach(io: goat, filename: 'goat.jpeg', content_type: 'image/jpeg')
@@ -143,7 +154,7 @@ lawnmower7.save
 
 lawnmower8 = Lawnmower.new do |u|
   u.title = 'John'
-  u.price = 5
+  u.price = 25
   u.description = 'John loves mawnlowing so much, that he changed his name to feel closer to his John Deere 1600 Series Turbo III Wide-Area Mower,'
   u.speed = 5
   u.photo.attach(io: john, filename: 'john.jpeg', content_type: 'image/jpeg')
@@ -155,7 +166,7 @@ lawnmower8.save
 # reviews for bob
 review1 = Review.new do |u|
   u.comment = 'Not so much cutting done, but I liked his enthusiasm'
-  u.rating = 4
+  u.rating = 2
   u.photo.attach(io: rolling_bob, filename: 'rolling_bob.jpeg', content_type: 'image/jpeg')
 end
 review1.lawnmower = lawnmower1
@@ -185,5 +196,46 @@ end
 review4.lawnmower = lawnmower3
 review4.user = user2
 review4.save
+
+review5 = Review.new do |u|
+  u.comment = 'He did a wonderful job!'
+  u.rating = 5
+end
+review5.lawnmower = lawnmower1
+review5.user = user4
+review5.save
+
+# bookings
+booking1 = Booking.new do |u|
+  u.status = 0
+  u.booking_date = 'Wed, 23 Nov 2022'
+end
+booking1.lawnmower = lawnmower1
+booking1.user = user2
+booking1.save
+
+booking2 = Booking.new do |u|
+  u.status = 1
+  u.booking_date = 'Mon, 21 Nov 2022'
+end
+booking2.lawnmower = lawnmower2
+booking2.user = user2
+booking2.save
+
+booking3 = Booking.new do |u|
+  u.status = 0
+  u.booking_date = 'Fri, 25 Nov 2022'
+end
+booking3.lawnmower = lawnmower4
+booking3.user = user2
+booking3.save
+
+booking4 = Booking.new do |u|
+  u.status = 0
+  u.booking_date = 'Fri, 25 Nov 2022'
+end
+booking4.lawnmower = lawnmower5
+booking4.user = user2
+booking4.save
 
 puts "done"

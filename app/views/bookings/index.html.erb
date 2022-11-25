@@ -1,27 +1,33 @@
 <div class="container d-flex justify-content-around booking-margin">
   <div>
-    <strong><h1>My Orders</h1></strong>
     <% if @bookings.empty? %>
-      <strong><h1 class="text-center">My Bookings</h1></strong>
-        <h4>You currently have no bookings!</h4>
-          <div class="btn btn-danger">
-            <%= link_to 'Find a Mawnlower', root_path, class:'text-info' %>
-          </div>
+      <div class="my-booking-container">
+        <div class="my-booking-card align-items-center">
+          <strong><h1>My Bookings</h1></strong>
+            <h4>You currently have no bookings!</h4>
+              <div class="btn btn-danger">
+                <%= link_to 'Find a Mawnlower', root_path, class:'text-info' %>
+              </div>
+        </div>
+      </div>
     <% else %>
       <div class="my-booking-container">
-        <% @bookings.each do |booking| %>
+      <div class="request-card">
+          <strong><h1>My Bookings</h1></strong>
+        </div>
+        <% @bookings.reverse.each do |booking| %>
           <div class="my-booking-card">
-            <p>Title:<%= booking.lawnmower.title.capitalize %></p>
-            <p>Price:<%= booking.lawnmower.price %>$</p>
+            <p>Title: <%= booking.lawnmower.title.capitalize %></p>
+            <p>Price: <%= booking.lawnmower.price %>$</p>
             <p>Requested on: <%= booking.booking_date%></p>
             <p><%= booking.user.name %>, <%= booking.user.address %></p>
               <% if booking.pending? %>
                 <p><%= booking.lawnmower.user.name %> has received your request.</p>
-                <p>Status: Order pending</p>
+                <p class="text-warning">Status: Order pending</p>
               <% elsif booking.confirmed? %>
-                <p>Status: Order confirmed</p>
+                <p class="text-success">Status: Order confirmed</p>
               <% else %>
-                <p>Status: Order cancelled</p>
+                <p class="text-danger">Status: Order cancelled</p>
               <% end %>
             <small><%= link_to 'View Booking', lawnmower_booking_path(booking.lawnmower, booking)%></small>
             <small><%= link_to 'Delete Booking', lawnmower_booking_path(booking.lawnmower, booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'text-danger' %></small>
@@ -32,12 +38,22 @@
   </div>
 
   <div class="my-confirmed-container">
-    <strong><h1>To be confirmed</h1></strong>
         <% if @lawnmowerbookings.empty? %>
-            <h4>Currently no bookings!</h4>
+          <div class="my-booking-container">
+            <div class="my-booking-card align-items-center">
+              <strong><h1>My Requests</h1></strong>
+              <h4>Currently no bookings!</h4>
+                <div class="btn btn-danger">
+                  <%= link_to 'Create more offers', new_lawnmower_path , class:'text-info' %>
+                </div>
+            </div>
+          </div>
         <% else %>
         <div>
-          <% @lawnmowerbookings.each do |booking| %>
+        <div class="request-card">
+          <strong><h1>My Requests</h1></strong>
+        </div>
+          <% @lawnmowerbookings.reverse.each do |booking| %>
             <div class="my-booking-card">
               <p><%= booking.lawnmower.title.capitalize %>: <%= booking.lawnmower.price %>$</p>
               <p>Requested on: <%= booking.booking_date%></p>
@@ -47,11 +63,11 @@
                   <p><%= booking.lawnmower.user.name %> has received your request.</p>
                   <p>Status: Order pending</p>
                 <% elsif booking.confirmed? %>
-                  <p>Status: Order confirmed</p>
+                  <p class="text-success">Status: Order confirmed</p>
                 <% else %>
-                  <p>Status: Order cancelled</p>
+                  <p class="text-danger">Status: Order cancelled</p>
                 <% end %>
-                <% if booking.cancelled?  %>
+                <% if booking.pending? == false  %>
                   <p></p>
                 <% else %>
                   <%= link_to 'Accept', accepted_path(booking), data: { turbo_method: :patch} %>

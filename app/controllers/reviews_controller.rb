@@ -1,15 +1,15 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :update, :destroy]
-  before_action :set_lawnmower, only: [:new, :create, :destroy]
+  before_action :set_lawnmower, only: [:create, :destroy]
 
   def create
     @review = Review.new(review_params)
-    @review.lawnmower = Lawnmower.find(params[:lawnmower_id])
+    @review.lawnmower = @lawnmower
     @review.user = current_user
     if @review.save
-      redirect_to root_path
+      redirect_to lawnmower_path(@lawnmower)
     else
-      render 'lawnmowers/show' # entity
+      render 'lawnmowers/show', status: :unprocessable_entity
     end
   end
 

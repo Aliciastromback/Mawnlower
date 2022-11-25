@@ -13,8 +13,7 @@
         <h3>Booking Details</h3>
           <p>Price: <%= @booking.lawnmower.price %>€</p>
           <p>Booking made on: <%= @booking.booking_date%></p>
-          <p>By: <%= @booking.user.name %></p>
-          <p>Address: <%= @booking.user.address %></p>
+          <p>By: <%= @booking.user.name %> ,  Address: <%= @booking.user.address %></p>
             <% if @booking.pending? %>
                 <p><%= @booking.lawnmower.user.name %> has received your request.</p>
                 <p>Status: Order pending</p>
@@ -23,6 +22,8 @@
               <% else %>
                 <p>Status: Order cancelled</p>
             <% end %></div>
+            <%= link_to 'Cancel Order', cancelled_path(@booking), data: { turbo_method: :patch}, class: 'text-danger' %>
+        </div>
       </div>
   </div>
-<div>
+</div>

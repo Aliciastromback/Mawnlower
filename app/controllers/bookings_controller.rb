@@ -1,9 +1,16 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :update, :destroy, :confirm]
+  before_action :set_booking, only: [:show, :update, :destroy, :cancelled]
   before_action :set_lawnmower, only: [:new, :create]
 
+  def cancelled
+    @booking.cancelled!
+    redirect_to lawnmower_booking_path(@booking.lawnmower, @booking)
+  end
+
   def index
-    @bookings = Booking.all
+    @bookings = Booking.where(user: current_user)
+    lawnmowers = Lawnmower.where(user: current_user)
+    @lawnmowerbookings = Booking.select { |booking| lawnmowers.include?(booking.lawnmower)}
   end
 
   def show; end

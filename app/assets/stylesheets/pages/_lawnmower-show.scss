@@ -50,3 +50,27 @@
 .img {
   margin-bottom: 16px;
 }
+
+.img-booking {
+  width:100%;
+  height: 100%;
+  overflow: hidden;
+
+  img{
+    height: 500px;
+  }
+}
+
+.show-booking-container {
+  width: 80vw;
+  background-color: white;
+  margin: 140px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.booking-info{
+  padding: 12px;
+}

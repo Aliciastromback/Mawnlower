@@ -1,29 +1,27 @@
-<div class="container">
-  <div class="card-product">
-    <div class="img">
-      <%= cl_image_tag @booking.lawnmower.photo.key %>
+<div class="show-booking-container">
+  <div class="img-booking">
+    <%= cl_image_tag @booking.lawnmower.photo.key %>
+  </div>
+  <div class="booking-info">
+    <div class="details">
+      <h2><%= @booking.lawnmower.title %></h2>
+      <p>Decription: <%= @booking.lawnmower.description %></p>
+      <p>Speed: <%= @booking.lawnmower.speed %></p>
     </div>
-      <div class="product-info">
-        <div class="card-product-infos">
-          <h2><%= @booking.lawnmower.title %></h2>
-          <p>Decription: <%= @booking.lawnmower.description %></p>
-          <p>Speed: <%= @booking.lawnmower.speed %></p>
-        </div>
-        <div>
-        <h3>Booking Details</h3>
-          <p>Price: <%= @booking.lawnmower.price %>€</p>
-          <p>Booking made on: <%= @booking.booking_date%></p>
-          <p>By: <%= @booking.user.name %> ,  Address: <%= @booking.user.address %></p>
-            <% if @booking.pending? %>
-                <p><%= @booking.lawnmower.user.name %> has received your request.</p>
-                <p>Status: Order pending</p>
-              <% elsif @booking.confirmed? %>
-                <p>Status: Order confirmed</p>
-              <% else %>
-                <p>Status: Order cancelled</p>
-            <% end %></div>
-            <%= link_to 'Cancel Order', cancelled_user_path(@booking), data: { turbo_method: :patch}, class: 'text-danger' %>
-        </div>
-      </div>
+    <div>
+      <h3>Booking Details</h3>
+      <p>Price: <%= @booking.lawnmower.price %>€</p>
+      <p>Booking made on: <%= @booking.booking_date%></p>
+      <p>By: <%= @booking.user.name %> ,  Address: <%= @booking.user.address %></p>
+      <% if @booking.pending? %>
+        <p><%= @booking.lawnmower.user.name %> has received your request.</p>
+        <p>Status: Order pending</p>
+      <% elsif @booking.confirmed? %>
+        <p>Status: Order confirmed</p>
+      <% else %>
+        <p>Status: Order cancelled</p>
+      <% end %></div>
+      <%= link_to 'Cancel Order', cancelled_user_path(@booking), data: { turbo_method: :patch}, class: 'text-danger' %>
+    </div>
   </div>
 </div>

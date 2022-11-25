@@ -85,10 +85,10 @@ lawnmower2 = Lawnmower.new do |u|
   u.title = 'Bailey'
   u.price = 1000
   u.description = 'Borks all the grass away'
-  u.speed = 5
+  u.speed = 2
   u.photo.attach(io: doggo, filename: 'doggo.jpg', content_type: 'image/jpg')
 end
-lawnmower2.user = user1
+lawnmower2.user = user3
 lawnmower2.save
 
 lawnmower3 = Lawnmower.new do |u|
@@ -118,7 +118,7 @@ lawnmower5 = Lawnmower.new do |u|
   u.speed = 5
   u.photo.attach(io: michael, filename: 'michael.jpeg', content_type: 'image/jpeg')
 end
-lawnmower5.user = user1
+lawnmower5.user = user3
 lawnmower5.save
 
 lawnmower6 = Lawnmower.new do |u|
@@ -128,7 +128,7 @@ lawnmower6 = Lawnmower.new do |u|
   u.speed = 3
   u.photo.attach(io: bunnies, filename: 'bunnies.jpeg', content_type: 'image/jpeg')
 end
-lawnmower6.user = user1
+lawnmower6.user = user3
 lawnmower6.save
 
 lawnmower7 = Lawnmower.new do |u|
@@ -166,7 +166,7 @@ review2 = Review.new do |u|
   u.comment = 'You are fantastic Bob. You lightened up my day and brightened up my garden. May god be with you!<3'
   u.rating = 5
 end
-review2.lawnmower = lawnmower3
+review2.lawnmower = lawnmower1
 review2.user = user3
 review2.save
 

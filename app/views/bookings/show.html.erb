@@ -22,7 +22,7 @@
               <% else %>
                 <p>Status: Order cancelled</p>
             <% end %></div>
-            <%= link_to 'Cancel Order', cancelled_path(@booking), data: { turbo_method: :patch}, class: 'text-danger' %>
+            <%= link_to 'Cancel Order', cancelled_user_path(@booking), data: { turbo_method: :patch}, class: 'text-danger' %>
         </div>
       </div>
   </div>

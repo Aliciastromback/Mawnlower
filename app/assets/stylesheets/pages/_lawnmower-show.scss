@@ -1,4 +1,4 @@
-.container {
+.show-page-container {
   padding: 80px;
   display: flex;
   justify-content: space-between;
@@ -32,6 +32,7 @@
 
 .product-info {
   flex-grow: 1;
+  background-color: white;
 }
 
 .review-info {

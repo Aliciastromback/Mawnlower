@@ -1,8 +1,18 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :update, :destroy, :cancelled]
+  before_action :set_booking, only: [:show, :update, :destroy, :cancelled, :accepted, :cancelled_user]
   before_action :set_lawnmower, only: [:new, :create]
 
+  def accepted
+    @booking.confirmed!
+    redirect_to bookings_path
+  end
+
   def cancelled
+    @booking.cancelled!
+    redirect_to bookings_path
+  end
+
+  def cancelled_user
     @booking.cancelled!
     redirect_to lawnmower_booking_path(@booking.lawnmower, @booking)
   end

@@ -3,7 +3,7 @@
 }
 
 .my-booking-card {
-  background-color:yellow;
+  background-color: rgb(196, 180, 180);
   border: 1px;
   border-style: solid;
   height: 300px;
@@ -16,9 +16,12 @@
 }
 
 .my-booking-container {
-  width: 420px;
+  width: 100%;
 }
 
 .my-confirmed-container {
-  background-color: red;
+}
+
+.request-card {
+  text-decoration: underline;
 }

@@ -55,7 +55,7 @@ user2 = User.new do |u|
   u.email = "stormbreaker@gmail.com"
   u.password = "123456"
   u.password_confirmation = "123456"
-  u.address = "Luleå, Sweden (or russia..we areant sure)"
+  u.address = "Luleå, Sweden (or russia..we aren't sure)"
   u.photo.attach(io: stormbreaker, filename: 'stormbreaker.png', content_type: 'image/png')
 end
 user2.save
@@ -65,7 +65,7 @@ user3 = User.new do |u|
   u.email = "spanish@gmail.com"
   u.password = "123456"
   u.password_confirmation = "123456"
-  u.address = "Spain"
+  u.address = "Berlin, Next to Barcelona"
   u.photo.attach(io: gabriel, filename: 'gabriel.png', content_type: 'image/png')
 end
 user3.save

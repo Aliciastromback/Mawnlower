@@ -1,9 +1,16 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :update, :destroy]
+  before_action :set_booking, only: [:show, :update, :destroy, :cancelled]
   before_action :set_lawnmower, only: [:new, :create]
 
+  def cancelled
+    @booking.cancelled!
+    redirect_to lawnmower_booking_path(@booking.lawnmower, @booking)
+  end
+
   def index
-    @bookings = Booking.all
+    @bookings = Booking.where(user: current_user)
+    lawnmowers = Lawnmower.where(user: current_user)
+    @lawnmowerbookings = Booking.select { |booking| lawnmowers.include?(booking.lawnmower)}
   end
 
   def show; end
@@ -18,6 +25,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.user = current_user
     @booking.lawnmower = @lawnmower
+    @booking.pending!
     if @booking.save
       redirect_to bookings_path
     else
@@ -46,6 +54,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:user_id, :lawnmower_id, :booking_date)
+    params.require(:booking).permit(:user_id, :lawnmower_id, :booking_date, :status)
   end
 end

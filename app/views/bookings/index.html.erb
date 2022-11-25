@@ -1,26 +1,39 @@
 <strong><h1 class="text-center">My Bookings</h1></strong>
-<div class="row my-2">
-  <% if @bookings.empty? %>
-    <div class="text-center">
-      <h4>Does your garden look like this?</h4>
-      <img src="https://static.wixstatic.com/media/ab47da_54b098ab1e824fa1bc3c4daefef0638b~mv2.jpg/v1/fit/w_1000%2Ch_1000%2Cal_c%2Cq_80/file.jpg" alt="overgrown garden">
-      <h4>Make a booking to snip snip your troubles away</h4>
-    </div>
-  <% else %>
-    <% @bookings.each do |booking| %>
-        <% if booking.user_id == current_user.id%>
-          <div class="col-12 col-sm-6 mb-4" data-aos="zoom-in">
-            <div class="bg-white rounded shadow h-100">
-              <div class="p-3 rounded-bottom d-flex flex-column">
-                <p><%= booking.lawnmower.title.capitalize %>: <%= booking.lawnmower.price %>$</p>
-                <p>Booking confirmed on: <%= booking.booking_date%></p>
-                <p>Address: <%= booking.user.address %></p>
-                <p>By: <%= booking.user.name %></p>
-                <small><%= link_to 'Delete Booking', lawnmower_booking_path(booking.lawnmower, booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'text-danger' %></small>
+<div class="background-image1">
+  <div class="row my-2">
+    <% if @bookings.empty? %>
+      <div class="nobooking">
+        <h4>Does your garden look like this?</h4>
+        <h4>Make a booking to snip snip your troubles away</h4>
+          <div class="btn btn-danger">
+            <%= link_to 'Find a Mawnlower', root_path, class:'text-info' %>
+          </div>
+      </div>
+
+  </div>
+</div>
+    <% else %>
+      <% @bookings.each do |booking| %>
+            <div class="col-12 col-sm-6 mb-4" data-aos="zoom-in">
+              <div class="bg-white rounded shadow h-100">
+                <div class="p-3 rounded-bottom d-flex flex-column">
+                  <p><%= booking.lawnmower.title.capitalize %>: <%= booking.lawnmower.price %>$</p>
+                  <p>Booking confirmed on: <%= booking.booking_date%></p>
+                  <p>Address: <%= booking.user.address %></p>
+                  <p>By: <%= booking.user.name %></p>
+                    <% if booking.pending? %>
+                      <p><%= booking.lawnmower.user.name %> has received your request.</p>
+                      <p>Status: Order pending</p>
+                    <% elsif booking.confirmed? %>
+                      <p>Status: Order confirmed</p>
+                    <% else %>
+                      <p>Status: Order cancelled</p>
+                    <% end %>
+                  <small><%= link_to 'View Booking', lawnmower_booking_path(booking.lawnmower, booking)%></small>
+                  <small><%= link_to 'Delete Booking', lawnmower_booking_path(booking.lawnmower, booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'text-danger' %></small>
+                </div>
               </div>
             </div>
-          </div>
-        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
